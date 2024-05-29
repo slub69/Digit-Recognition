@@ -22,6 +22,42 @@ let clearButton = document.querySelector('.clear')
 clearButton.addEventListener("click", () => {
     ctx.clearRect(0, 0, canvas.width, canvas.height)
 })
+let i = 0
+let analysisBtn = document.querySelector(".analysis")
+analysisBtn.addEventListener("click", () =>{
+    let data = canvas.toDataURL("image/png")
+    let a = document.createElement("a")
+    a.href = data
+    i++
+    a.download = `digit${i}.png`
+    a.click()
+})
+
+window.addEventListener("mousedown", (e) => draw = true)
+window.addEventListener("mouseup", (e) => draw = false)
+
+window.addEventListener("mousemove", (e) => {
+    if(prevX == null || prevY == null || !draw){
+        prevX = e.clientX
+        prevY = e.clientY
+        return
+    }
+
+    let currentX = e.clientX
+    let currentY = e.clientY
+
+    ctx.beginPath()
+    ctx.moveTo(prevX, prevY)
+    ctx.lineTo(currentX, currentY)
+    ctx.stroke()
+
+    prevX = currentX
+    prevY = currentY
+})
+
+
+
+
 /* 
 function onload(){
     console.log("Starting program...\n")
