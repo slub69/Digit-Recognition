@@ -1,7 +1,11 @@
-let canvas = null
-let ctx = null
-let referenceSheet = null
-let referenceSheetLoaded = false
+const canvas = document.getElementById("world")
+canvas.height = window.innerHeight
+canvas.width = window.innerWidth
+console.log(canvas)
+
+const ctx = canvas.getContext("2d")
+
+
 
 let world = [[]]
 
@@ -10,7 +14,8 @@ let worldWidth, worldHeight
 let tileWidth, tileHeight = 16
 
 
-let prevX,prevY = null
+let prevX = null
+let prevY = null
 
 ctx.lineWidth = 5
 
@@ -37,6 +42,7 @@ window.addEventListener("mousedown", (e) => draw = true)
 window.addEventListener("mouseup", (e) => draw = false)
 
 window.addEventListener("mousemove", (e) => {
+    console.log("drawing...")
     if(prevX == null || prevY == null || !draw){
         prevX = e.clientX
         prevY = e.clientY
